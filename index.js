@@ -1,8 +1,11 @@
 const blockChain = require('./src/chain').blockChain
 const Block = require('./src/block').Block
-let block1 = new Block(Date.now(), {
-  msg: 'first Block'
-})
-blockChain.addBlock(block1)
-console.log(JSON.stringify(blockChain))
-console.log(JSON.stringify(blockChain.isChainValid()))
+const appendData = (obj) => {
+  let block = new Block(
+    obj.time || Date.now(),
+    obj.data
+  )
+  blockChain.addBlock(block)
+}
+exports.appendData = appendData
+exports.Chain = blockChain
